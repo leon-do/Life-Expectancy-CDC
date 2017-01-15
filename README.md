@@ -1,7 +1,5 @@
 <h2> Predicting human life expectancy using CDC data and google predictions. </h2>
 
-<h3> Average Error: Average error:
-2.54. Average error is the average difference between the predicted value and the actual value (0 is best)</h3>
 
 <h3> Source: </h3>
 
