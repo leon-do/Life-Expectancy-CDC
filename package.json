@@ -1,0 +1,23 @@
+{
+  "name": "life",
+  "version": "1.0.0",
+  "description": "<h2> Predicting human life expectancy using CDC data and google predictions. </h2>",
+  "main": "app.js",
+  "dependencies": {
+    "mysql": "^2.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leon-do/Life-Expectancy-CDC-Google.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leon-do/Life-Expectancy-CDC-Google/issues"
+  },
+  "homepage": "https://github.com/leon-do/Life-Expectancy-CDC-Google#readme"
+}
