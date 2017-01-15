@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="input-field col s12">
+              <select class="raceField">
+                <option value="" disabled selected>Select Race</option>
+                <option value="White">White</option>
+                <option value="Black">Black</option>
+                <option value="All Races">Other</option>
+              </select>
+            </div>
+
+            <div class="input-field col s12">
+              <select class="genderField">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div class="input-field col s12">
+              <select class="yearField">
+                <option value="" disabled selected>Select Date of Birth</option>
+              </select>
+            </div>
+
+            <button class="btn waves-effect waves-light" type="button" name="action">Submit</button>
+
+            <div class="yearDiv"></div>
+            <div class="countDown"></div>
+
+        </div> <!-- container -->
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+        <script type="text/javascript" src="./assets/jquery.countdown.min.js">
+
+        </script>
+        <script type="text/javascript">
+
+
+
+
+
+
+            $(document).ready(function() {
+                //display input
+                $('select').material_select();
+            });
+
+            //disable submit button
+            $('button').prop('disabled',true)
+
+            //my variables
+            var race = $(".raceField :selected").val()
+            var gender = $(".genderField :selected").val()
+            var year = $(".yearField :selected").val()
+
+            //populate year
+            for (var i = 2013; i >= 1900; i--){
+                $(".yearField").append("<option value=" + i + ">" + i + "</option>")
+            }
+
+
+
+            //if input is selected, enable button
+            $(".input-field").on('change',function(){
+
+                var race = $(".raceField :selected").val()
+                var gender = $(".genderField :selected").val()
+                var year = $(".yearField :selected").val()
+
+                if (race !== "" && gender !== "" && year !== ""){
+                    $('button').prop('disabled',false)
+                }
+
+            })
+
+
+
+            //submit button does ajax call
+            $("button").on('click',function(){
+
+                var race = $(".raceField :selected").val()
+                var gender = $(".genderField :selected").val()
+                var year = $(".yearField :selected").val()
+
+                //change from Other to All Races
+                if (gender === 'Other'){
+                    gender = "All Races"
+                }
+
+                //send info to node
+                $.get('http://localhost:8080/?race=' + race + '&gender=' + gender + '&year=' + year).done(function(response){
+                    //recieve info from node and display
+                    $(".yearDiv").text(response)
+
+                    displayTime(response)
+                })
+            })
+
+
+            function displayTime(year){
+                var currentYear = new Date().getFullYear()
+
+                var endYear = currentYear + year;
+
+                $(".countDown")
+                .countdown(endYear + "/12/31", function(event) {
+                  $(this).text(
+                    event.strftime('%D days %H hours %M minutes %S seconds')
+                  );
+                });
+            }
+
+
+
+
+
+
+        </script>
+    </body>
+</html>
