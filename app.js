@@ -21,12 +21,8 @@ connection.connect();
 
 
 
-// ===================== allow access from index.html ===============
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-});
+
 
 
 
@@ -38,9 +34,11 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
 
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
     //parse data
     var urlData = url.parse(request.url,true).query;
-
     //parse some more
     var race = urlData.race
     var gender = urlData.gender
