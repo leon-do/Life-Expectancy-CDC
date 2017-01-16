@@ -1,5 +1,11 @@
 <h2> Predicting human life expectancy using data from CDC. </h2>
 
+<h3> Description: </h3>
+
+This website collects data from the National Center for Health Statistics (NCHS) which is a principal agency of the U.S. Federal Statistical System, housed within the Centers for Disease Control and Prevention (CDC). The data is imported as a comma-separated values (csv) file into a structed query langage database (SQL). Race, gender and date of birth are sent through an API call to a node.js server which then queries the data for the predicted life expectancy. The year is then returned as a countdown (time left) using open source software.
+
+
+
 
 <h3> Source: </h3>
 
