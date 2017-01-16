@@ -4,7 +4,7 @@
   "description": "<h2> Predicting human life expectancy using CDC data and google predictions. </h2>",
   "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "express": "^4.14.0",
