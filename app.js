@@ -47,7 +47,8 @@ app.get('/', function(request, response) {
 
         //send it to index.html
         response.setHeader('Access-Control-Allow-Origin', '*');
-        response.send(rows[rows.length -1]);
+        console.log(rows)
+        response.send(rows);
 
     })
 
