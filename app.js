@@ -46,7 +46,7 @@ app.get('/', function(request, response) {
     connection.query("SELECT LifeExpectancy FROM lifeTable WHERE race=? AND sex=? AND year=?", [race, gender, year], function(err, rows, fields) {
 
         //send it to index.html
-        //response.setHeader('Access-Control-Allow-Origin', '*');
+        response.setHeader('Access-Control-Allow-Origin', '*');
         response.send(rows[rows.length -1]);
 
     })
