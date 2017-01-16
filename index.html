@@ -139,7 +139,7 @@
                 }).done(function(response){
 
                     //recieve info from node and display
-                    $(".yearDiv").html("Life Expectancy: <br />" + response[0].LifeExpectancy + " years old")
+                    $(".yearDiv").html("Expected Age: <br />" + response[0].LifeExpectancy + " years old")
 
                     displayTime(response[0].LifeExpectancy)
                 })
