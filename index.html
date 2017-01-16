@@ -102,7 +102,7 @@
                 }
 
                 //send info to node
-                $.get('http://localhost:8080/?race=' + race + '&gender=' + gender + '&year=' + year).done(function(response){
+                $.get('http://localhost:5000/?race=' + race + '&gender=' + gender + '&year=' + year).done(function(response){
                     //recieve info from node and display
                     $(".yearDiv").text(response)
 

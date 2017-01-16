@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "<h2> Predicting human life expectancy using CDC data and google predictions. </h2>",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "mysql": "^2.12.0"
   },

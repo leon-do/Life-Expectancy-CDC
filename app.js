@@ -1,16 +1,18 @@
-var mysql      = require('mysql');
+var mysql = require('mysql');
 var http = require('http')
 var url = require('url')
+var express = require('express');
+var app = express();
 
 
 
 // ===================== mySQL connection =======================================
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : 'mysql4.gear.host',
   port     : '3306',
-  user     : 'root',
-  password : '',
+  user     : 'l3us3r1',
+  password : 'root**',
   database : 'lifeexpectancy',
 });
 
@@ -19,10 +21,12 @@ connection.connect();
 
 
 
-// ===================== Listen for response from index.html =======================================
+// ===================== Listen for response from index.html ===============
+app.set('port', (process.env.PORT || 5000));
 
-var myServer = http.createServer(function(request, response){
 
+
+app.get('/', function(request, response) {
 
     //parse data
     var urlData = url.parse(request.url,true).query;
@@ -41,10 +45,13 @@ var myServer = http.createServer(function(request, response){
         response.write(JSON.stringify(rows[rows.length - 1].LifeExpectancy));
         response.end();
 
-    });
+    })
+
+
+}); //app.get
 
 
 
-})//create server
-
-myServer.listen(8080);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
