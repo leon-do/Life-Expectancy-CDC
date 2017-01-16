@@ -21,7 +21,17 @@ connection.connect();
 
 
 
+// ===================== allow access from index.html ===============
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+});
+
+
+
 // ===================== Listen for response from index.html ===============
+
 app.set('port', (process.env.PORT || 5000));
 
 
