@@ -34,9 +34,6 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
 
-    response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
     //parse data
     var urlData = url.parse(request.url,true).query;
     //parse some more
@@ -49,9 +46,8 @@ app.get('/', function(request, response) {
     connection.query("SELECT LifeExpectancy FROM lifeTable WHERE race=? AND sex=? AND year=?", [race, gender, year], function(err, rows, fields) {
 
         //send it to index.html
-        response.setHeader('Access-Control-Allow-Origin', '*');
-        response.write(JSON.stringify(rows[rows.length - 1].LifeExpectancy));
-        response.end();
+        //response.setHeader('Access-Control-Allow-Origin', '*');
+        response.send(rows[rows.length()]);
 
     })
 

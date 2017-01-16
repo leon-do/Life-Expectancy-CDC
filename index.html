@@ -102,19 +102,26 @@
                 }
 
                 //send info to node
-                $.get('http://localhost:5000/?race=' + race + '&gender=' + gender + '&year=' + year).done(function(response){
+                $.get('http://localhost:5000/',
+                {
+                    race:race,
+                    gender:gender,
+                    year:year
+                }).done(function(response){
                     //recieve info from node and display
-                    $(".yearDiv").text(response)
+                    $(".yearDiv").text(response.LifeExpectancy)
 
-                    displayTime(response)
+                    displayTime(response.LifeExpectancy)
                 })
             })
 
 
-            function displayTime(year){
+            function displayTime(endAge){
+                var birthYear = parseInt($(".yearField :selected").val())
+
                 var currentYear = new Date().getFullYear()
 
-                var endYear = currentYear + year;
+                var endYear = endAge - (currentYear - birthYear) + currentYear;
 
                 $(".countDown")
                 .countdown(endYear + "/12/31", function(event) {
