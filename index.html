@@ -6,9 +6,26 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+        <style media="screen">
+            h3{
+                text-align: center;
+            }
+            .yearDiv, .countDown{
+                text-align: center;
+                font-size: 2em;
+            }
+            .gif{
+                width: 32px;
+            }
+        </style>
+
     </head>
     <body>
+
         <div class="container">
+
+            <h3>Predicted Life Expectancy</h3>
+
 
             <div class="input-field col s12">
               <select class="raceField">
@@ -33,10 +50,22 @@
               </select>
             </div>
 
-            <button class="btn waves-effect waves-light" type="button" name="action">Submit</button>
+            <button class="btn waves-effect waves-light blue-grey" type="button" name="action">Calculate</button>
 
+            <br><br>
             <div class="yearDiv"></div>
+            <br><br>
             <div class="countDown"></div>
+
+            <br><br>
+            <hr>
+            <br><br>
+            <div>
+                This website collects data from the National Center for Health Statistics (NCHS) which is a principal agency of the U.S. Federal Statistical System, housed within the Centers for Disease Control and Prevention (CDC).
+                <blockquote>
+                    Age-adjusted death rates (deaths per 100,000) are based on the 2000 U.S. standard population. Populations used for computing death rates for 2011â2013 are postcensal estimates based on the 2010 census, estimated as of July 1, 2010. Rates for census years are based on populations enumerated in the corresponding censuses. Rates for noncensus years before 2010 are revised using updated intercensal population estimates and may differ from rates previously published.
+                </blockquote>
+            </div>
 
         </div> <!-- container -->
 
@@ -44,19 +73,17 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-        <script type="text/javascript" src="./assets/jquery.countdown.min.js">
+        <script type="text/javascript" src="./assets/js/jquery.countdown.min.js"></script>
 
-        </script>
         <script type="text/javascript">
-
-
-
-
 
 
             $(document).ready(function() {
                 //display input
                 $('select').material_select();
+                //initiate parallax
+                $('.parallax').parallax();
+
             });
 
             //disable submit button
@@ -92,6 +119,8 @@
             //submit button does ajax call
             $("button").on('click',function(){
 
+                $(".yearDiv").html("<img class='gif' src=./assets/images/loading.gif>")
+
                 var race = $(".raceField :selected").val()
                 var gender = $(".genderField :selected").val()
                 var year = $(".yearField :selected").val()
@@ -109,7 +138,7 @@
                     year:year
                 }).done(function(response){
                     //recieve info from node and display
-                    $(".yearDiv").text(response.LifeExpectancy)
+                    $(".yearDiv").html("Life Expectancy: <br />" + response.LifeExpectancy + " years old")
 
                     displayTime(response.LifeExpectancy)
                 })
@@ -125,8 +154,9 @@
 
                 $(".countDown")
                 .countdown(endYear + "/12/31", function(event) {
-                  $(this).text(
-                    event.strftime('%D days %H hours %M minutes %S seconds')
+                  $(this).html(
+                    "Time Left: <br />" +
+                    event.strftime('%D days %H hours %M minutes %S seconds left')
                   );
                 });
             }
