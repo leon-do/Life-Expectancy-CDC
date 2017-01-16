@@ -1,7 +1,7 @@
 {
   "name": "life",
   "version": "1.0.0",
-  "description": "<h2> Predicting human life expectancy using CDC data and google predictions. </h2>",
+  "description": "",
   "engines": {
     "node": "6.9.1"
   },
