@@ -1,4 +1,4 @@
-<h2> Predicting human life expectancy using CDC data and google predictions. </h2>
+<h2> Predicting human life expectancy using data from CDC. </h2>
 
 
 <h3> Source: </h3>
