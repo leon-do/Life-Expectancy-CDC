@@ -137,10 +137,11 @@
                     gender:gender,
                     year:year
                 }).done(function(response){
+                    
                     //recieve info from node and display
-                    $(".yearDiv").html("Life Expectancy: <br />" + response.LifeExpectancy + " years old")
+                    $(".yearDiv").html("Life Expectancy: <br />" + response[0].LifeExpectancy + " years old")
 
-                    displayTime(response.LifeExpectancy)
+                    displayTime(response[0].LifeExpectancy)
                 })
             })
 
