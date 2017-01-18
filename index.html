@@ -32,7 +32,7 @@
                 <option value="" disabled selected>Select Race</option>
                 <option value="White">White</option>
                 <option value="Black">Black</option>
-                <option value="All Races">Other</option>
+                <option value="All Races">All Races</option>
               </select>
             </div>
 
@@ -125,10 +125,6 @@
                 var gender = $(".genderField :selected").val()
                 var year = $(".yearField :selected").val()
 
-                //change from Other to All Races
-                if (gender === 'Other'){
-                    gender = "All Races"
-                }
 
                 //send info to node
                 $.get('https://life-expectancy-cdc.herokuapp.com/',
